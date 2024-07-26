@@ -19,18 +19,7 @@ export class UserInformationComponent {
 
   ngOnInit(): void {
     console.log(this.apiService.userdetails);
-
     this.setFormState(this.apiService.userdetails.employeData)
-
-    // this.userForm = this.fb.group({
-    //   fullName: ['', Validators.required],
-    //   fatherName: ['', Validators.required],
-    //   gender: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   dob: ['', Validators.required],
-    //   phoneNumber: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-    //   address: ['', Validators.required]
-    // });
   }
 
   onSubmit(): void {
@@ -55,7 +44,7 @@ export class UserInformationComponent {
       pan: null,
     }
     formData.forEach((element: any) => {
-      if (element.employeeName) !data.fullName ? data.fullName = element.employeeName : null
+      if (element?.employeeName) !data.fullName ? data.fullName = element.employeeName : null
       if (element.fatherName) !data.fatherName ? data.fatherName = element.fatherName : null
       if (element.gender) !data.gender ? data.gender = element.gender : null
       if (element.DOB) !data.dob ? data.dob = element.DOB : null
@@ -65,12 +54,11 @@ export class UserInformationComponent {
       if (element.employeeAddress) !data.address ? data.address = element.employeeAddress : null
     });
     console.log(data);
-    debugger
     this.userForm = this.fb.group({
       fullName: [formData ? data.fullName : null, Validators.required],
       fatherName: [formData ? data.fatherName : null, Validators.required],
       gender: [formData ? data.gender : null, Validators.required],
-      email: [formData ? data.email : null, [Validators.required, Validators.email]],
+      email: [formData ? `${data.fullName}@gmail.com` : null, [Validators.required, Validators.email]],
       dob: [formData ? data.dob : null, Validators.required],
       phoneNumber: [formData ? data.phoneNumber : null, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       aadhaar: [formData ? data.aadhaar : null, Validators.required],
