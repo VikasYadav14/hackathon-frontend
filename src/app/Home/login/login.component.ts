@@ -36,6 +36,11 @@ export class LoginComponent {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
       const payload = this.form.value;
+      // this.router.navigate(['/dashboard']);
+      this.show();
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+      }, 1000);
       this.apiService.login(payload).subscribe({
         next: (res:any) => {
           if (res) {
@@ -46,7 +51,7 @@ export class LoginComponent {
           }
         },
         error: (err) => {
-          this.showError()
+          // this.showError()
         }
       });
     } else {
