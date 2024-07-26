@@ -44,6 +44,7 @@ export class UserInformationComponent {
       pan: null,
     }
     formData.forEach((element: any) => {
+      if(element!==null){
       if (element?.employeeName) !data.fullName ? data.fullName = element.employeeName : null
       if (element.fatherName) !data.fatherName ? data.fatherName = element.fatherName : null
       if (element.gender) !data.gender ? data.gender = element.gender : null
@@ -52,13 +53,14 @@ export class UserInformationComponent {
       if (element.aadharNumber) !data.aadhaar ? data.aadhaar = element.aadharNumber : null
       if (element.PANNumber) !data.pan ? data.pan = element.PANNumber : null
       if (element.employeeAddress) !data.address ? data.address = element.employeeAddress : null
+      }
     });
     console.log(data);
     this.userForm = this.fb.group({
       fullName: [formData ? data.fullName : null, Validators.required],
       fatherName: [formData ? data.fatherName : null, Validators.required],
       gender: [formData ? data.gender : null, Validators.required],
-      email: [formData ? `${data.fullName}@gmail.com` : null, [Validators.required, Validators.email]],
+      email: [formData ? `${data.fullName}@gmail.com`: null, [Validators.required, Validators.email]],
       dob: [formData ? data.dob : null, Validators.required],
       phoneNumber: [formData ? data.phoneNumber : null, [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       aadhaar: [formData ? data.aadhaar : null, Validators.required],
