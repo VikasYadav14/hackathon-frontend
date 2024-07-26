@@ -1,8 +1,11 @@
 <p-toast></p-toast>
+<div *ngIf="loading" class="spinner-container">
+  <p-progressSpinner aria-label="Loading"></p-progressSpinner>
+</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <h2 class="text-start mb-4" style="font-weight: 600;">Login</h2>
+      <h2 class="text-center mb-4" style="font-weight: 600;">Login</h2>
       <form style="width: 350px;" [formGroup]="form" (ngSubmit)="submit()" class="card card-body">
         <div class="text-center mb-4">
           <img src="assets/logo.webp" alt="Logo" style="width: 100px;">

@@ -7,18 +7,20 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgIf, FormsModule, ToastModule, ButtonModule, RippleModule],
+  imports: [CommonModule, ReactiveFormsModule, NgIf , FormsModule,ToastModule, ButtonModule, RippleModule,ProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [MessageService]
 })
 export class LoginComponent {
   form: FormGroup;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +36,7 @@ export class LoginComponent {
 
   submit() {
     if (this.form.valid) {
+      this.loading = true; 
       console.log('Form Data:', this.form.value);
       const payload = this.form.value;
       // this.router.navigate(['/dashboard']);
@@ -41,6 +44,7 @@ export class LoginComponent {
       setTimeout(() => {
         this.router.navigate(['/dashboard']);
       }, 1000);
+      // this.loading = false;
       this.apiService.login(payload).subscribe({
         next: (res: any) => {
           if (res) {
@@ -56,6 +60,7 @@ export class LoginComponent {
       });
     } else {
       console.log('Form is not valid');
+      this.loading = false;
     }
   }
 
