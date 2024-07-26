@@ -39,7 +39,7 @@ export class HomeComponent {
         switch (controlName) {
           case 'aadharFrontFile':
             this.aadharFrontPreview = file;
-            debugger;
+            // debugger;
             break;
           case 'aadharBackFile':
             this.aadharBackPreview = file;
