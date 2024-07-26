@@ -20,4 +20,13 @@ userdetails:any
     // debugger;
     return this.http.post<any>(`${this.baseurl}/api/employeDetails`, payload);
   }
+
+  getUserData() {
+    return this.http.get<any>(`${this.baseurl}/api/getalluser`);
+  }
+
+  postUserData(payload : any) {
+    return this.http.post<any>(`${this.baseurl}/api/signUp`, payload);
+  }
+
 }
