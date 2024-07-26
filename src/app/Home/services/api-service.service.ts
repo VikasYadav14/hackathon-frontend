@@ -6,17 +6,18 @@ import { Observable, catchError, of, switchMap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiServiceService {
-
+userdetails:any
   constructor(
     private http: HttpClient
   ) { }
-
-  login(payload:any): Observable<any> {
-    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/signIn', payload);
+  // baseurl = 'http://localhost:3000'
+  baseurl = 'https://hackathon-backend-vikasyadav14s-projects.vercel.app'
+  login(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.baseurl}/api/signIn`, payload);
   }
 
-  uploadUserData(payload:any){
+  uploadUserData(payload: any) {
     // debugger;
-    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/employeeDetails', payload);
+    return this.http.post<any>(`${this.baseurl}/api/employeDetails`, payload);
   }
 }

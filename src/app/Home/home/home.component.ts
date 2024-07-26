@@ -36,21 +36,21 @@ export class HomeComponent {
     if (file) {
       // const reader = new FileReader();
       // reader.onload = (e) => {
-        switch (controlName) {
-          case 'aadharFrontFile':
-            this.aadharFrontPreview = file;
-            // debugger;
-            break;
-          case 'aadharBackFile':
-            this.aadharBackPreview = file;
-            break;
-          case 'panFile':
-            this.panPreview = file;
-            break;
-          case 'photo':
-            this.photoPreview = file;
-            break;
-        }
+      switch (controlName) {
+        case 'aadharFrontFile':
+          this.aadharFrontPreview = file;
+          // debugger;
+          break;
+        case 'aadharBackFile':
+          this.aadharBackPreview = file;
+          break;
+        case 'panFile':
+          this.panPreview = file;
+          break;
+        case 'photo':
+          this.photoPreview = file;
+          break;
+      }
       // };
       // reader.readAsDataURL(file);
 
@@ -66,17 +66,17 @@ export class HomeComponent {
   submit() {
     if (this.form.valid) {
       let payload = {
-        images:[]
+        images: []
       }
-      
-      let formData = new FormData();
-      formData.append('aadharFront', this.aadharFrontPreview);
-      formData.append('aadharBack', this.aadharFrontPreview);
-      formData.append('pan', this.panPreview);
-      formData.append('photo', this.photoPreview);
-      
-      this.apiService.uploadUserData(formData).subscribe((res)=>{
-        if(res){
+      const formData = new FormData();
+      formData.append('images', this.aadharFrontPreview);
+      formData.append('images', this.aadharFrontPreview);
+      formData.append('images', this.panPreview);
+      formData.append('images', this.photoPreview);
+
+      this.apiService.uploadUserData(formData).subscribe((res) => {
+        if (res) {
+          this.apiService.userdetails = res;
           this.router.navigate(['/user']);
         }
       })
