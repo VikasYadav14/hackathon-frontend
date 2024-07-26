@@ -36,21 +36,21 @@ export class HomeComponent {
     if (file) {
       // const reader = new FileReader();
       // reader.onload = (e) => {
-        switch (controlName) {
-          case 'aadharFrontFile':
-            this.aadharFrontPreview = file;
-            debugger;
-            break;
-          case 'aadharBackFile':
-            this.aadharBackPreview = file;
-            break;
-          case 'panFile':
-            this.panPreview = file;
-            break;
-          case 'photo':
-            this.photoPreview = file;
-            break;
-        }
+      switch (controlName) {
+        case 'aadharFrontFile':
+          this.aadharFrontPreview = file;
+          debugger;
+          break;
+        case 'aadharBackFile':
+          this.aadharBackPreview = file;
+          break;
+        case 'panFile':
+          this.panPreview = file;
+          break;
+        case 'photo':
+          this.photoPreview = file;
+          break;
+      }
       // };
       // reader.readAsDataURL(file);
 
@@ -67,14 +67,15 @@ export class HomeComponent {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
       // let file = this.imageChangedEvent.target.files[0];
+      this.router.navigate(['/user']);
       let file = '';
       let formData = new FormData();
       formData.append('aadharFront', this.aadharFrontPreview);
       formData.append('aadharBack', this.aadharFrontPreview);
       formData.append('pan', this.panPreview);
       formData.append('photo', this.photoPreview);
-      this.apiService.uploadUserData(formData).subscribe((res)=>{
-        if(res){
+      this.apiService.uploadUserData(formData).subscribe((res) => {
+        if (res) {
           this.router.navigate(['/user']);
         }
       })
