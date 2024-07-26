@@ -20,7 +20,7 @@ export class LoginComponent {
     private apiService:ApiServiceService
   ) {
     this.form = this.fb.group({
-      username: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
   }
