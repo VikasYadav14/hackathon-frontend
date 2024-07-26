@@ -7,12 +7,12 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgIf , FormsModule,ToastModule, ButtonModule, RippleModule],
+  imports: [CommonModule, ReactiveFormsModule, NgIf, FormsModule, ToastModule, ButtonModule, RippleModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [MessageService]
@@ -21,9 +21,9 @@ export class LoginComponent {
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
-    private apiService:ApiServiceService,
+    private apiService: ApiServiceService,
     private messageService: MessageService
   ) {
     this.form = this.fb.group({
@@ -42,7 +42,7 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       }, 1000);
       this.apiService.login(payload).subscribe({
-        next: (res:any) => {
+        next: (res: any) => {
           if (res) {
             this.show();
             setTimeout(() => {
@@ -60,15 +60,15 @@ export class LoginComponent {
   }
 
   show() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful' ,life: 5000});
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful', life: 5000 });
   }
 
   showWarn() {
-    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Please check the required fields' , life: 5000});
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Please check the required fields', life: 5000 });
   }
 
   showError() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error Occurred', life: 5000 });
-  }   
+  }
 
 }
