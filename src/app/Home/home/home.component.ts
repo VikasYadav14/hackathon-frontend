@@ -31,28 +31,57 @@ export class HomeComponent {
     });
   }
 
+  // onFileSelect(event: any, controlName: string) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     // const reader = new FileReader();
+  //     // reader.onload = (e) => {
+  //       switch (controlName) {
+  //         case 'aadharFrontFile':
+  //           this.aadharFrontPreview = file;
+  //           break;
+  //         case 'aadharBackFile':
+  //           this.aadharBackPreview = file;
+  //           break;
+  //         case 'panFile':
+  //           this.panPreview = file;
+  //           break;
+  //         case 'photo':
+  //           this.photoPreview = file;
+  //           break;
+  //       }
+  //     // };
+  //     // reader.readAsDataURL(file);
+
+  //     // Update the form control value
+  //     this.form.patchValue({
+  //       [controlName]: file
+  //     });
+  //     this.form.get(controlName)?.updateValueAndValidity();
+  //   }
+  // }
+
   onFileSelect(event: any, controlName: string) {
     const file = event.target.files[0];
     if (file) {
-      // const reader = new FileReader();
-      // reader.onload = (e) => {
-      switch (controlName) {
-        case 'aadharFrontFile':
-          this.aadharFrontPreview = file;
-          debugger;
-          break;
-        case 'aadharBackFile':
-          this.aadharBackPreview = file;
-          break;
-        case 'panFile':
-          this.panPreview = file;
-          break;
-        case 'photo':
-          this.photoPreview = file;
-          break;
-      }
-      // };
-      // reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        switch (controlName) {
+          case 'aadharFrontFile':
+            this.aadharFrontPreview = e.target?.result;
+            break;
+          case 'aadharBackFile':
+            this.aadharBackPreview = e.target?.result;
+            break;
+          case 'panFile':
+            this.panPreview = e.target?.result;
+            break;
+          case 'photo':
+            this.photoPreview = e.target?.result;
+            break;
+        }
+      };
+      reader.readAsDataURL(file);
 
       // Update the form control value
       this.form.patchValue({
@@ -63,22 +92,22 @@ export class HomeComponent {
   }
 
 
+
   submit() {
     if (this.form.valid) {
-      console.log('Form Data:', this.form.value);
-      // let file = this.imageChangedEvent.target.files[0];
       this.router.navigate(['/user']);
-      let file = '';
-      let formData = new FormData();
-      formData.append('aadharFront', this.aadharFrontPreview);
-      formData.append('aadharBack', this.aadharFrontPreview);
-      formData.append('pan', this.panPreview);
-      formData.append('photo', this.photoPreview);
-      this.apiService.uploadUserData(formData).subscribe((res) => {
-        if (res) {
-          this.router.navigate(['/user']);
-        }
-      })
+      // console.log('Form Data:', this.form.value);
+      // let file = '';
+      // let formData = new FormData();
+      // formData.append('aadharFront', this.aadharFrontPreview);
+      // formData.append('aadharBack', this.aadharFrontPreview);
+      // formData.append('pan', this.panPreview);
+      // formData.append('photo', this.photoPreview);
+      // this.apiService.uploadUserData(formData).subscribe((res)=>{
+      //   if(res){
+      //     this.router.navigate(['/user']);
+      //   }
+      // })
     } else {
       console.log('Form is not valid');
     }
