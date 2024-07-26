@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,16 @@ declare var $: any;
 export class DashboardComponent {
   dropdownOpen = false;
 
+  constructor(
+    private router: Router,
+  ) {}
+
   deleteEmployee(Id: Number) {
     console.log(Id)
   }
 
   logout() {
-    //
+    this.router.navigate(['/']);
   }
 
   toggleDropdown() {
@@ -33,6 +38,10 @@ export class DashboardComponent {
 
   close() {
     $('#exampleModalCenter').modal('hide');
+  }
+
+  redirectToStatus() {
+    this.router.navigate(['/home']);
   }
 
 }

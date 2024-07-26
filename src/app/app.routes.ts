@@ -5,8 +5,9 @@ import { DashboardComponent } from './Home/dashboard/dashboard.component';
 import { LoginComponent } from './Home/login/login.component';
 
 export const routes: Routes = [
-    { path: '', component: DashboardComponent },
+    { path: '', component: LoginComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'user', component: UserInformationComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '' }

@@ -29,10 +29,11 @@ export class LoginComponent {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
       const payload = this.form.value;
+      this.router.navigate(['/dashboard']);
       this.apiService.login(payload).subscribe({
         next: (res:any) => {
           if (res) {
-      this.router.navigate(['/user']);
+           this.router.navigate(['/dashboard']);
           }
         },
         error: (err) => {

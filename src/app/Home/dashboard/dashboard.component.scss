@@ -21,3 +21,14 @@
   .bold-label {
     font-weight: bold; /* Makes text bold */
 }
+
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
