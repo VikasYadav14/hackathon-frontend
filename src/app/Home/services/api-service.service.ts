@@ -12,7 +12,10 @@ export class ApiServiceService {
   ) { }
 
   login(payload:any): Observable<any> {
-    debugger;
-    return this.http.post<any>('http://localhost:5001/api/login', payload);
+    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/login', payload);
+  }
+
+  uploadUserData(payload:any){
+    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/employeeDetails', payload);
   }
 }
