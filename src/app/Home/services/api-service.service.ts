@@ -12,10 +12,11 @@ export class ApiServiceService {
   ) { }
 
   login(payload:any): Observable<any> {
-    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/login', payload);
+    return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/signIn', payload);
   }
 
   uploadUserData(payload:any){
+    // debugger;
     return this.http.post<any>('https://hackathon-backend-vikasyadav14s-projects.vercel.app/api/employeeDetails', payload);
   }
 }
